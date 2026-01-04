@@ -5,31 +5,31 @@ const cors = require("cors");
 const server = jsonServer.create();
 const router = jsonServer.router("db.json");
 
-// Function to set CORS headers
+// Function to set CORS headers - used everywhere
 const setCorsHeaders = (req, res) => {
   const origin = req.headers.origin;
-  res.header("Access-Control-Allow-Origin", origin || "*");
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, Accept");
-  res.header("Access-Control-Max-Age", "86400");
+  res.setHeader("Access-Control-Allow-Origin", origin || "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, Accept");
+  res.setHeader("Access-Control-Max-Age", "86400");
 };
 
-// CRITICAL: Handle ALL OPTIONS requests FIRST - catch them before anything else
+// CRITICAL: Handle ALL OPTIONS requests FIRST using app.all() - this catches EVERYTHING
 server.all("*", (req, res, next) => {
+  // Handle preflight OPTIONS requests immediately
   if (req.method === "OPTIONS") {
     setCorsHeaders(req, res);
-    return res.sendStatus(200);
+    return res.status(200).end();
   }
+  // For all other requests, set CORS headers and continue
+  setCorsHeaders(req, res);
   next();
 });
 
-// CORS middleware with explicit configuration
+// CORS middleware - additional layer of protection
 server.use(cors({
-  origin: function (origin, callback) {
-    // Allow all origins
-    callback(null, true);
-  },
+  origin: true, // Allow all origins
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
@@ -38,21 +38,20 @@ server.use(cors({
   optionsSuccessStatus: 200
 }));
 
-// Add CORS headers to ALL responses - this runs for every request
-server.use((req, res, next) => {
+// Explicit OPTIONS handlers for auth routes - triple protection
+server.options("*", (req, res) => {
   setCorsHeaders(req, res);
-  next();
+  res.status(200).end();
 });
 
-// Explicit OPTIONS handlers for auth routes (backup)
 server.options("/login", (req, res) => {
   setCorsHeaders(req, res);
-  res.sendStatus(200);
+  res.status(200).end();
 });
 
 server.options("/register", (req, res) => {
   setCorsHeaders(req, res);
-  res.sendStatus(200);
+  res.status(200).end();
 });
 
 server.use(jsonServer.defaults());
