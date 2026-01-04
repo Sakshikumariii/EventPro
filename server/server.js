@@ -5,41 +5,37 @@ const cors = require("cors");
 const server = jsonServer.create();
 const router = jsonServer.router("db.json");
 
-// IMPORTANT: CORS must be configured FIRST, before any other middleware
-// This ensures preflight OPTIONS requests are handled correctly
-
-// Handle preflight OPTIONS requests FIRST - before any other middleware
-server.options("*", (req, res) => {
-  const origin = req.headers.origin;
-  res.header("Access-Control-Allow-Origin", origin || "*");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Max-Age", "86400"); // 24 hours
-  res.sendStatus(200);
+// CRITICAL: Handle ALL OPTIONS requests FIRST - before ANY other middleware
+// This must be the very first thing to handle preflight requests
+server.use((req, res, next) => {
+  if (req.method === "OPTIONS") {
+    const origin = req.headers.origin;
+    res.header("Access-Control-Allow-Origin", origin || "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, Accept");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Max-Age", "86400");
+    return res.sendStatus(200);
+  }
+  next();
 });
 
-// CORS configuration - allow all origins
+// CORS middleware - must be before json-server-auth
 server.use(cors({
-  origin: function (origin, callback) {
-    // Allow all origins
-    callback(null, true);
-  },
+  origin: true, // Allow all origins
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
-  exposedHeaders: ["Authorization"],
-  preflightContinue: false,
-  optionsSuccessStatus: 200
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
+  exposedHeaders: ["Authorization"]
 }));
 
-// Add CORS headers to all responses
+// Add CORS headers to ALL responses (backup)
 server.use((req, res, next) => {
   const origin = req.headers.origin;
   res.header("Access-Control-Allow-Origin", origin || "*");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, Accept");
   next();
 });
 
@@ -47,7 +43,10 @@ server.use(jsonServer.defaults());
 
 server.db = router.db;
 
+// Apply auth middleware
 server.use(auth);
+
+// Apply router
 server.use(router);
 
 // Error handling middleware

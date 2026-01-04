@@ -10,15 +10,30 @@
 
 ### 1. Backend Server (Render.com) - FIXED ✅
 
-The `server/server.js` file has been updated with:
-- Proper CORS middleware order (CORS must be FIRST)
-- Explicit OPTIONS request handling for preflight
-- CORS headers added to all responses
-- Error handling middleware
+The `server/server.js` file has been **completely rewritten** with:
+- **OPTIONS request handler FIRST** - Catches all preflight requests before any other middleware
+- CORS middleware configured to allow all origins
+- CORS headers added to ALL responses as backup
+- Proper middleware order to work with json-server-auth
 
-**ACTION REQUIRED:**
-1. Commit and push the updated `server/server.js` to your repository
-2. **Redeploy your backend on Render.com** - The changes won't take effect until you redeploy!
+**⚠️ CRITICAL ACTION REQUIRED:**
+1. **Commit and push the updated `server/server.js` to your repository**
+   ```bash
+   git add server/server.js
+   git commit -m "Fix CORS - handle OPTIONS requests first"
+   git push
+   ```
+
+2. **MUST REDEPLOY your backend on Render.com:**
+   - Go to Render.com dashboard
+   - Find your backend service
+   - Click **"Manual Deploy"** → **"Deploy latest commit"**
+   - **WAIT for deployment to complete** (this is critical!)
+   - Check the logs to verify server started successfully
+
+3. **Verify CORS is working:**
+   - After deployment, you can test with: `node server/test-cors.js`
+   - Or check Render logs for "CORS enabled for all origins" message
 
 ### 2. Frontend (Vercel) - PARTIALLY FIXED
 
@@ -64,6 +79,28 @@ The `Events/src/services/api/axiosApi.js` has a fallback URL, but you still need
 
 ## Testing After Deployment
 
+### Test Backend CORS (Before testing frontend):
+
+1. **Quick Test:**
+   ```bash
+   cd server
+   node test-cors.js
+   ```
+   Should show ✅ CORS is configured correctly
+
+2. **Manual Test:**
+   - Open browser console on any page
+   - Run this command:
+   ```javascript
+   fetch('https://eventpro-backend.onrender.com/login', {
+     method: 'OPTIONS',
+     headers: { 'Origin': window.location.origin }
+   }).then(r => console.log('CORS Headers:', r.headers.get('access-control-allow-origin')))
+   ```
+   - Should return your origin URL, not null
+
+### Test Frontend:
+
 1. **Check Backend:**
    - Visit: `https://eventpro-backend.onrender.com`
    - Should see JSON Server welcome page or API response
@@ -71,7 +108,8 @@ The `Events/src/services/api/axiosApi.js` has a fallback URL, but you still need
 2. **Check Frontend:**
    - Visit your Vercel URL
    - Open browser console (F12)
-   - Try logging in
+   - **Clear console and refresh page**
+   - Try logging in or signing up
    - Should NOT see CORS errors anymore
 
 ## Common Issues
