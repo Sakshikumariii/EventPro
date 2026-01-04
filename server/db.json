@@ -6,6 +6,13 @@
       "firstName": "manya",
       "role": "user",
       "id": 1
+    },
+    {
+      "email": "sakshi@gmail.com",
+      "password": "$2a$10$aXOJ3gz3WURfDK9IaU3jquJ9ECk47fOufPdxCNsmcyIKPPNW5T9z.",
+      "firstName": "sakshi",
+      "role": "user",
+      "id": 2
     }
   ],
   "events": [
@@ -105,7 +112,7 @@
       "state": "West Bengal",
       "price": 50000,
       "date": "2026-02-12",
-      "rating": 4.0,
+      "rating": 4,
       "imageUrl": "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620"
     },
     {
@@ -119,7 +126,6 @@
       "rating": 4.9,
       "imageUrl": "https://images.unsplash.com/photo-1519741497674-611481863552"
     },
-
     {
       "id": 11,
       "title": "Product Launch",
@@ -175,7 +181,6 @@
       "rating": 4.3,
       "imageUrl": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f"
     },
-
     {
       "id": 16,
       "title": "Film Festival",
@@ -231,7 +236,6 @@
       "rating": 4.6,
       "imageUrl": "https://images.unsplash.com/photo-1503376780353-7e6692767b70"
     },
-
     {
       "id": 21,
       "title": "Wedding Reception",
@@ -251,7 +255,7 @@
       "state": "Madhya Pradesh",
       "price": 45000,
       "date": "2026-02-09",
-      "rating": 4.0,
+      "rating": 4,
       "imageUrl": "https://images.unsplash.com/photo-1549057446-9f5c6ac91a04"
     },
     {
@@ -287,7 +291,6 @@
       "rating": 4.1,
       "imageUrl": "https://images.unsplash.com/photo-1519452575417-564c1401ecc0"
     },
-
     {
       "id": 26,
       "title": "Charity Event",
@@ -321,7 +324,6 @@
       "rating": 4.2,
       "imageUrl": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
     },
-
     {
       "id": 32,
       "title": "Wedding Anniversary",
@@ -366,7 +368,6 @@
       "rating": 4.3,
       "imageUrl": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
     },
-
     {
       "id": 36,
       "title": "Luxury Baby Shower",
@@ -389,7 +390,6 @@
       "rating": 4.6,
       "imageUrl": "https://images.unsplash.com/photo-1506157786151-b8491531f063"
     },
-
     {
       "id": 40,
       "title": "Street Food Festival",
@@ -401,7 +401,6 @@
       "rating": 4.3,
       "imageUrl": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0"
     },
-
     {
       "id": 43,
       "title": "Product Demo Event",
@@ -435,7 +434,6 @@
       "rating": 4.4,
       "imageUrl": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
     },
-
     {
       "id": 46,
       "title": "Kids Carnival",
@@ -444,10 +442,9 @@
       "state": "Bihar",
       "price": 50000,
       "date": "2026-02-04",
-      "rating": 4.0,
+      "rating": 4,
       "imageUrl": "https://images.unsplash.com/photo-1549057446-9f5c6ac91a04"
     },
-
     {
       "id": 48,
       "title": "Workshop on AI",
