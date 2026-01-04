@@ -1,0 +1,474 @@
+{
+  "users": [
+    {
+      "email": "manya@gmail.com",
+      "password": "$2a$10$9sv09Bg/UgNnrMYHcqwSPeCIJIZNVswumN97NTwSt4GAzYIeCMvgO",
+      "firstName": "manya",
+      "role": "user",
+      "id": 1
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "title": "Music Festival",
+      "type": "Music",
+      "location": "Goa",
+      "state": "Goa",
+      "price": 120000,
+      "date": "2026-02-15",
+      "rating": 4.6,
+      "imageUrl": "https://images.unsplash.com/photo-1506157786151-b8491531f063"
+    },
+    {
+      "id": 2,
+      "title": "Tech Conference",
+      "type": "Corporate",
+      "location": "Bangalore",
+      "state": "Karnataka",
+      "price": 90000,
+      "date": "2026-03-10",
+      "rating": 4.4,
+      "imageUrl": "https://images.unsplash.com/photo-1551836022-d5d88e9218df"
+    },
+    {
+      "id": 3,
+      "title": "Destination Wedding",
+      "type": "Wedding",
+      "location": "Jaipur",
+      "state": "Rajasthan",
+      "price": 200000,
+      "date": "2026-01-20",
+      "rating": 4.9,
+      "imageUrl": "https://weddingphotographybysf.com/wp-content/uploads/2024/11/Alibag-Destination-Wedding-Location-1024x683.webp"
+    },
+    {
+      "id": 4,
+      "title": "Corporate Annual Meet",
+      "type": "Corporate",
+      "location": "Mumbai",
+      "state": "Maharashtra",
+      "price": 110000,
+      "date": "2026-04-05",
+      "rating": 4.3,
+      "imageUrl": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+    },
+    {
+      "id": 5,
+      "title": "Birthday Bash",
+      "type": "Birthday",
+      "location": "Delhi",
+      "state": "Delhi",
+      "price": 70000,
+      "date": "2026-02-01",
+      "rating": 4.2,
+      "imageUrl": "https://images.unsplash.com/photo-1513151233558-d860c5398176"
+    },
+    {
+      "id": 6,
+      "title": "Fashion Show",
+      "type": "Fashion",
+      "location": "Mumbai",
+      "state": "Maharashtra",
+      "price": 150000,
+      "date": "2026-03-18",
+      "rating": 4.5,
+      "imageUrl": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c"
+    },
+    {
+      "id": 7,
+      "title": "Food Carnival",
+      "type": "Food",
+      "location": "Amritsar",
+      "state": "Punjab",
+      "price": 80000,
+      "date": "2026-02-25",
+      "rating": 4.3,
+      "imageUrl": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0"
+    },
+    {
+      "id": 8,
+      "title": "Startup Meetup",
+      "type": "Corporate",
+      "location": "Hyderabad",
+      "state": "Telangana",
+      "price": 60000,
+      "date": "2026-01-28",
+      "rating": 4.1,
+      "imageUrl": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+    },
+    {
+      "id": 9,
+      "title": "Art Exhibition",
+      "type": "Art",
+      "location": "Kolkata",
+      "state": "West Bengal",
+      "price": 50000,
+      "date": "2026-02-12",
+      "rating": 4.0,
+      "imageUrl": "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620"
+    },
+    {
+      "id": 10,
+      "title": "Luxury Wedding",
+      "type": "Wedding",
+      "location": "Udaipur",
+      "state": "Rajasthan",
+      "price": 250000,
+      "date": "2026-03-01",
+      "rating": 4.9,
+      "imageUrl": "https://images.unsplash.com/photo-1519741497674-611481863552"
+    },
+
+    {
+      "id": 11,
+      "title": "Product Launch",
+      "type": "Corporate",
+      "location": "Noida",
+      "state": "Uttar Pradesh",
+      "price": 130000,
+      "date": "2026-02-22",
+      "rating": 4.4,
+      "imageUrl": "https://images.unsplash.com/photo-1556761175-4b46a572b786"
+    },
+    {
+      "id": 12,
+      "title": "Gaming Expo",
+      "type": "Gaming",
+      "location": "Pune",
+      "state": "Maharashtra",
+      "price": 95000,
+      "date": "2026-04-10",
+      "rating": 4.6,
+      "imageUrl": "https://images.unsplash.com/photo-1542751371-adc38448a05e"
+    },
+    {
+      "id": 13,
+      "title": "Cultural Fest",
+      "type": "Cultural",
+      "location": "Bhubaneswar",
+      "state": "Odisha",
+      "price": 65000,
+      "date": "2026-03-15",
+      "rating": 4.2,
+      "imageUrl": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad"
+    },
+    {
+      "id": 14,
+      "title": "Literary Festival",
+      "type": "Education",
+      "location": "Kochi",
+      "state": "Kerala",
+      "price": 55000,
+      "date": "2026-01-15",
+      "rating": 4.1,
+      "imageUrl": "https://images.unsplash.com/photo-1519452575417-564c1401ecc0"
+    },
+    {
+      "id": 15,
+      "title": "Book Fair",
+      "type": "Education",
+      "location": "Delhi",
+      "state": "Delhi",
+      "price": 60000,
+      "date": "2026-01-30",
+      "rating": 4.3,
+      "imageUrl": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f"
+    },
+
+    {
+      "id": 16,
+      "title": "Film Festival",
+      "type": "Entertainment",
+      "location": "Panaji",
+      "state": "Goa",
+      "price": 140000,
+      "date": "2026-02-18",
+      "rating": 4.7,
+      "imageUrl": "https://images.unsplash.com/photo-1517602302552-471fe67acf66"
+    },
+    {
+      "id": 17,
+      "title": "Dance Competition",
+      "type": "Cultural",
+      "location": "Chandigarh",
+      "state": "Chandigarh",
+      "price": 70000,
+      "date": "2026-03-22",
+      "rating": 4.2,
+      "imageUrl": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad"
+    },
+    {
+      "id": 18,
+      "title": "Trade Expo",
+      "type": "Business",
+      "location": "Ahmedabad",
+      "state": "Gujarat",
+      "price": 125000,
+      "date": "2026-04-01",
+      "rating": 4.4,
+      "imageUrl": "https://images.unsplash.com/photo-1540575467063-178a50c2df87"
+    },
+    {
+      "id": 19,
+      "title": "Health Expo",
+      "type": "Health",
+      "location": "Chennai",
+      "state": "Tamil Nadu",
+      "price": 85000,
+      "date": "2026-02-27",
+      "rating": 4.3,
+      "imageUrl": "https://images.unsplash.com/photo-1505751172876-fa1923c5c528"
+    },
+    {
+      "id": 20,
+      "title": "Automobile Expo",
+      "type": "Business",
+      "location": "Gurgaon",
+      "state": "Haryana",
+      "price": 180000,
+      "date": "2026-03-08",
+      "rating": 4.6,
+      "imageUrl": "https://images.unsplash.com/photo-1503376780353-7e6692767b70"
+    },
+
+    {
+      "id": 21,
+      "title": "Wedding Reception",
+      "type": "Wedding",
+      "location": "Lucknow",
+      "state": "Uttar Pradesh",
+      "price": 160000,
+      "date": "2026-01-18",
+      "rating": 4.5,
+      "imageUrl": "https://images.unsplash.com/photo-1519225421980-715cb0215aed"
+    },
+    {
+      "id": 22,
+      "title": "Kids Birthday Party",
+      "type": "Birthday",
+      "location": "Indore",
+      "state": "Madhya Pradesh",
+      "price": 45000,
+      "date": "2026-02-09",
+      "rating": 4.0,
+      "imageUrl": "https://images.unsplash.com/photo-1549057446-9f5c6ac91a04"
+    },
+    {
+      "id": 23,
+      "title": "New Year Party",
+      "type": "Entertainment",
+      "location": "Manali",
+      "state": "Himachal Pradesh",
+      "price": 170000,
+      "date": "2026-12-31",
+      "rating": 4.8,
+      "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7"
+    },
+    {
+      "id": 24,
+      "title": "Corporate Training",
+      "type": "Corporate",
+      "location": "Kochi",
+      "state": "Kerala",
+      "price": 75000,
+      "date": "2026-03-12",
+      "rating": 4.2,
+      "imageUrl": "https://images.unsplash.com/photo-1521737711867-e3b97375f902"
+    },
+    {
+      "id": 25,
+      "title": "Science Fair",
+      "type": "Education",
+      "location": "Ranchi",
+      "state": "Jharkhand",
+      "price": 50000,
+      "date": "2026-02-20",
+      "rating": 4.1,
+      "imageUrl": "https://images.unsplash.com/photo-1519452575417-564c1401ecc0"
+    },
+
+    {
+      "id": 26,
+      "title": "Charity Event",
+      "type": "Social",
+      "location": "Nagpur",
+      "state": "Maharashtra",
+      "price": 60000,
+      "date": "2026-01-25",
+      "rating": 4.3,
+      "imageUrl": "https://images.unsplash.com/photo-1509099836639-18ba1795216d"
+    },
+    {
+      "id": 27,
+      "title": "Startup Pitch Day",
+      "type": "Business",
+      "location": "Bangalore",
+      "state": "Karnataka",
+      "price": 95000,
+      "date": "2026-03-05",
+      "rating": 4.5,
+      "imageUrl": "https://images.unsplash.com/photo-1556761175-4b46a572b786"
+    },
+    {
+      "id": 29,
+      "title": "Photography Workshop",
+      "type": "Workshop",
+      "location": "Shillong",
+      "state": "Meghalaya",
+      "price": 55000,
+      "date": "2026-03-25",
+      "rating": 4.2,
+      "imageUrl": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+    },
+
+    {
+      "id": 32,
+      "title": "Wedding Anniversary",
+      "type": "Wedding",
+      "location": "Surat",
+      "state": "Gujarat",
+      "price": 90000,
+      "date": "2026-02-06",
+      "rating": 4.4,
+      "imageUrl": "https://images.unsplash.com/photo-1519741497674-611481863552"
+    },
+    {
+      "id": 33,
+      "title": "Corporate Dinner",
+      "type": "Corporate",
+      "location": "Faridabad",
+      "state": "Haryana",
+      "price": 100000,
+      "date": "2026-01-29",
+      "rating": 4.2,
+      "imageUrl": "https://images.unsplash.com/photo-1528605248644-14dd04022da1"
+    },
+    {
+      "id": 34,
+      "title": "Cultural Night",
+      "type": "Cultural",
+      "location": "Imphal",
+      "state": "Manipur",
+      "price": 65000,
+      "date": "2026-03-14",
+      "rating": 4.1,
+      "imageUrl": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad"
+    },
+    {
+      "id": 35,
+      "title": "Job Fair",
+      "type": "Education",
+      "location": "Guwahati",
+      "state": "Assam",
+      "price": 70000,
+      "date": "2026-02-26",
+      "rating": 4.3,
+      "imageUrl": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+    },
+
+    {
+      "id": 36,
+      "title": "Luxury Baby Shower",
+      "type": "Family",
+      "location": "Jaipur",
+      "state": "Rajasthan",
+      "price": 80000,
+      "date": "2026-02-08",
+      "rating": 4.4,
+      "imageUrl": "https://images.unsplash.com/photo-1513151233558-d860c5398176"
+    },
+    {
+      "id": 37,
+      "title": "Music Concert",
+      "type": "Music",
+      "location": "Indore",
+      "state": "Madhya Pradesh",
+      "price": 140000,
+      "date": "2026-03-19",
+      "rating": 4.6,
+      "imageUrl": "https://images.unsplash.com/photo-1506157786151-b8491531f063"
+    },
+
+    {
+      "id": 40,
+      "title": "Street Food Festival",
+      "type": "Food",
+      "location": "Lucknow",
+      "state": "Uttar Pradesh",
+      "price": 75000,
+      "date": "2026-02-16",
+      "rating": 4.3,
+      "imageUrl": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0"
+    },
+
+    {
+      "id": 43,
+      "title": "Product Demo Event",
+      "type": "Business",
+      "location": "Noida",
+      "state": "Uttar Pradesh",
+      "price": 95000,
+      "date": "2026-01-27",
+      "rating": 4.1,
+      "imageUrl": "https://images.unsplash.com/photo-1556761175-4b46a572b786"
+    },
+    {
+      "id": 44,
+      "title": "Luxury Engagement",
+      "type": "Wedding",
+      "location": "Udaipur",
+      "state": "Rajasthan",
+      "price": 210000,
+      "date": "2026-02-11",
+      "rating": 4.9,
+      "imageUrl": "https://images.unsplash.com/photo-1519741497674-611481863552"
+    },
+    {
+      "id": 45,
+      "title": "Startup Networking",
+      "type": "Business",
+      "location": "Bangalore",
+      "state": "Karnataka",
+      "price": 85000,
+      "date": "2026-03-28",
+      "rating": 4.4,
+      "imageUrl": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+    },
+
+    {
+      "id": 46,
+      "title": "Kids Carnival",
+      "type": "Family",
+      "location": "Patna",
+      "state": "Bihar",
+      "price": 50000,
+      "date": "2026-02-04",
+      "rating": 4.0,
+      "imageUrl": "https://images.unsplash.com/photo-1549057446-9f5c6ac91a04"
+    },
+
+    {
+      "id": 48,
+      "title": "Workshop on AI",
+      "type": "Workshop",
+      "location": "Pune",
+      "state": "Maharashtra",
+      "price": 70000,
+      "date": "2026-04-02",
+      "rating": 4.3,
+      "imageUrl": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+    },
+    {
+      "id": 50,
+      "title": "Music DJ Party",
+      "type": "Music",
+      "location": "Noida",
+      "state": "Uttar Pradesh",
+      "price": 100000,
+      "date": "2026-02-21",
+      "rating": 4.4,
+      "imageUrl": "https://images.unsplash.com/photo-1506157786151-b8491531f063"
+    }
+  ]
+}
