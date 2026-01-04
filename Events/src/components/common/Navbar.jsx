@@ -13,6 +13,8 @@ const Navbar = () => {
     logout();
     navigate("/");
     setMobileMenuOpen(false);
+
+    
   };
 
   return (
