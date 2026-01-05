@@ -29,7 +29,7 @@ npm run dev
 2. Navigate to **Environment Variables**
 3. Add a new variable:
    - **Name:** `VITE_API_URL`
-   - **Value:** `https://eventpro-backend.onrender.com`
+   - **Value:** `https://eventpro-1.onrender.com`
 4. Redeploy your application
 
 Without this environment variable, the app will use a fallback URL, but it's recommended to set it explicitly.
