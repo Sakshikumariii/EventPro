@@ -1,21 +1,26 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axiosApi from "../../services/api/axiosApi";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const [currentPage, setCurrentPage] = useState(1);
+
   const ITEMS_PER_PAGE = 10;
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/events")
-      .then((res) => {
+    const fetchEvents = async () => {
+      try {
+        const res = await axiosApi.get("/events");
         setEvents(res.data);
+      } catch (error) {
+        console.error("Failed to fetch events", error);
+      } finally {
         setLoading(false);
-      })
-      .catch(() => setLoading(false));
+      }
+    };
+
+    fetchEvents();
   }, []);
 
   const totalPages = Math.ceil(events.length / ITEMS_PER_PAGE);
@@ -35,11 +40,7 @@ const Events = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {paginatedEvents.map((event) => (
-          <div
-            key={event.id}
-            className="border rounded-lg shadow-sm overflow-hidden"
-          >
-            
+          <div key={event.id} className="border rounded-lg shadow-sm overflow-hidden">
             <div className="h-60 w-full overflow-hidden">
               <img
                 src={event.imageUrl}
@@ -48,7 +49,6 @@ const Events = () => {
               />
             </div>
 
-            {/* Content */}
             <div className="p-4">
               <h2 className="font-semibold text-lg">{event.title}</h2>
               <p className="text-sm text-gray-500">
