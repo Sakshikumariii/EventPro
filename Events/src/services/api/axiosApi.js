@@ -1,14 +1,7 @@
 import axios from "axios";
 
-// Get API URL from environment variable with fallback
-const API_URL = import.meta.env.VITE_API_URL || "https://eventpro-backend.onrender.com";
-
-if (!import.meta.env.VITE_API_URL) {
-  console.warn("VITE_API_URL is not set. Using default backend URL:", API_URL);
-}
-
 const axiosApi = axios.create({
-  baseURL: API_URL,
+  baseURL: "http://localhost:5000",
 });
 
 axiosApi.interceptors.request.use((config) => {
