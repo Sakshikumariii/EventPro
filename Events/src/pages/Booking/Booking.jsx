@@ -26,7 +26,7 @@ const Booking = () => {
   };
 
   return (
-    <section id="booking" className="py-8 md:py-12 bg-gray-100 min-h-screen">
+    <section id="booking" className="py-16 md:py-20 bg-gray-100 min-h-screen">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <div className="text-center mb-12">

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const DecorationCard = ({ image, title, description }) => {
   return (
-    <article className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
+    <article className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition">
       <img
         src={image}
         alt={title}
@@ -21,8 +21,8 @@ const DecorationCard = ({ image, title, description }) => {
 
         <Link
           to="/booking"
-          className="mt-4 inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2 px-4 rounded-lg
-                     hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 font-semibold text-sm shadow-md hover:shadow-lg"
+          className="mt-4 inline-block bg-black text-white py-2 px-4 rounded-md
+                     hover:bg-gray-900 transition text-sm"
         >
           Book Now
         </Link>

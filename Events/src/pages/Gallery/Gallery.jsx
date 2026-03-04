@@ -7,7 +7,7 @@ const Gallery = () => {
   useAOS({ duration: 1000 });
 
   return (
-    <section id="gallery" className="py-8 md:py-12 bg-white">
+    <section id="gallery" className="py-16 md:py-20 bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Title */}

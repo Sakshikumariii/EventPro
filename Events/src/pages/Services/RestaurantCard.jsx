@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const RestaurantCard = ({ image, title, description }) => {
   return (
-    <article className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
+    <article className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
       <img
         src={image}
         alt={title}
@@ -21,8 +21,8 @@ const RestaurantCard = ({ image, title, description }) => {
 
         <Link
           to="/booking"
-          className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg
-                     hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 font-semibold text-sm shadow-md hover:shadow-lg"
+          className="inline-block bg-black text-white px-4 py-2 rounded-md
+                     hover:bg-gray-900 transition text-sm"
         >
           Book Now
         </Link>

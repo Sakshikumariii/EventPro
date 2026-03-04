@@ -96,9 +96,9 @@ const Contact = () => {
 
           {/* Social Icons */}
           <div className="flex justify-center gap-6 mt-10 text-2xl text-gray-600">
-            <FaFacebook className="hover:text-blue-600 cursor-pointer transition-colors duration-200 transform hover:scale-110" />
-            <FaInstagram className="hover:text-purple-600 cursor-pointer transition-colors duration-200 transform hover:scale-110" />
-            <FaTwitter className="hover:text-blue-400 cursor-pointer transition-colors duration-200 transform hover:scale-110" />
+            <FaFacebook className="hover:text-blue-600 cursor-pointer" />
+            <FaInstagram className="hover:text-pink-500 cursor-pointer" />
+            <FaTwitter className="hover:text-blue-400 cursor-pointer" />
           </div>
 
         </div>

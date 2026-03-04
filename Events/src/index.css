@@ -38,13 +38,13 @@ body {
   min-height: 100vh;
 }
 
-/* Custom Scrollbar - Event Website Theme */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f3f4f6;
+  background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {

@@ -13,19 +13,17 @@ const Navbar = () => {
     logout();
     navigate("/");
     setMobileMenuOpen(false);
-
-    
   };
 
   return (
-    <nav className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white shadow-lg sticky top-0 z-50 border-b border-gray-700">
+    <nav className="bg-gray-900  text-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           
           {/* Logo */}
           <Link
             to="/"
-            className="text-2xl font-bold tracking-wide bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent hover:from-blue-300 hover:via-purple-300 hover:to-blue-300 transition"
+            className="text-2xl font-bold tracking-wide text-white hover:text-blue-400 transition"
           >
             EventPro
           </Link>
@@ -78,7 +76,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                   to="/signup"
-                  className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-lg transition text-sm font-medium shadow-md hover:shadow-lg"
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition text-sm font-medium"
                 >
                   Sign Up
                 </Link>
@@ -148,7 +146,7 @@ const Navbar = () => {
                   <Link
                     to="/signup"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block w-full text-center px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-lg transition text-sm font-medium shadow-md hover:shadow-lg"
+                    className="block w-full text-center px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition text-sm font-medium"
                   >
                     Sign Up
                   </Link>

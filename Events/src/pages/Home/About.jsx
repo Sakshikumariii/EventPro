@@ -7,7 +7,7 @@ const About = () => {
   useAOS();
 
   return (
-    <section id="about" className="py-8 md:py-12 bg-white">
+    <section id="about" className="py-16 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12" data-aos="fade-up">
           <SectionTitle
@@ -34,8 +34,8 @@ const About = () => {
             </p>
 
             <button
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg
-                               hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 font-semibold shadow-md hover:shadow-lg"
+              className="bg-black text-white px-6 py-3 rounded-md
+                               hover:bg-gray-900 transition transform hover:scale-105"
             >
               Read more...
             </button>
