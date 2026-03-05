@@ -5,6 +5,8 @@ import InputField from "../../components/ui/InputField";
 import TextArea from "../../components/ui/TextArea";
 import Button from "../../components/ui/Button";
 import SectionTitle from "../../components/ui/SectionTitle";
+import axiosApi from "../../services/api/axiosApi";
+import { useAuth } from "../../context/AuthContext";
 
 
 const Booking = () => {
@@ -14,15 +16,60 @@ const Booking = () => {
     startDate: "",
     endDate: "",
     message: "",
+    phone: "",
+    tickets: 1,
   });
+
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const { user } = useAuth();
 
   const handleChange = (key, value) => {
     setForm({ ...form, [key]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Booking details submitted!");
+    setError("");
+    setSuccess("");
+
+    try {
+      setSubmitting(true);
+
+      await axiosApi.post("/bookings", {
+        // No specific eventId for now; we're booking by type/location
+        eventId: null,
+        name: user?.firstName || "Guest",
+        email: user?.email || "",
+        phone: form.phone,
+        eventName: form.eventName,
+        location: form.location,
+        startDate: form.startDate,
+        endDate: form.endDate,
+        message: form.message,
+        tickets: Number(form.tickets) || 1,
+      });
+
+      setSuccess("Your booking has been submitted successfully!");
+      setForm({
+        eventName: "",
+        location: "",
+        startDate: "",
+        endDate: "",
+        message: "",
+        phone: "",
+        tickets: 1,
+      });
+    } catch (err) {
+      setError(
+        err.response?.data?.message ||
+          "Failed to submit booking. Please try again."
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -41,6 +88,17 @@ const Booking = () => {
           onSubmit={handleSubmit}
           className="bg-white rounded-xl shadow-lg p-8 md:p-12"
         >
+          {error && (
+            <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-sm text-red-700">
+              {error}
+            </div>
+          )}
+          {success && (
+            <div className="mb-4 p-3 rounded-lg bg-green-50 border border-green-200 text-sm text-green-700">
+              {success}
+            </div>
+          )}
+
           <div className="grid md:grid-cols-2 gap-6">
             <SelectField
               label="Event Type"
@@ -71,6 +129,21 @@ const Booking = () => {
               value={form.endDate}
               onChange={(e) => handleChange("endDate", e.target.value)}
             />
+
+            <InputField
+              label="Phone Number"
+              type="tel"
+              value={form.phone}
+              onChange={(e) => handleChange("phone", e.target.value)}
+            />
+
+            <InputField
+              label="Number of Tickets"
+              type="number"
+              min={1}
+              value={form.tickets}
+              onChange={(e) => handleChange("tickets", e.target.value)}
+            />
           </div>
 
           <div className="mt-6">
@@ -84,12 +157,13 @@ const Booking = () => {
           </div>
 
           <div className="mt-8 text-center">
-            <button
+            <Button
               type="submit"
+              disabled={submitting}
               className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
-              Submit Booking
-            </button>
+              {submitting ? "Submitting..." : "Submit Booking"}
+            </Button>
           </div>
         </form>
       </div>

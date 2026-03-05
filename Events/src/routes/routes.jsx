@@ -15,6 +15,7 @@ import Layout from "../components/layout/Layout";
 import Login from "../pages/auth/Login";
 import Signup from "../pages/auth/Signup";
 import ProtectedRoute from "../components/auth/ProtectedRoute";
+import Events from "../pages/Event/Events";
 
 const router = createBrowserRouter([
   {
@@ -23,13 +24,17 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <LandingPage /> },
       { path: "about", element: <About /> },
-      { 
-        path: "booking", 
+      {
+        path: "booking",
         element: (
           <ProtectedRoute>
             <Booking />
           </ProtectedRoute>
-        ) 
+        ),
+      },
+      {
+        path: "events",
+        element: <Events />,
       },
       { path: "pricing", element: <Price /> },
       { path: "blog", element: <Blog /> },

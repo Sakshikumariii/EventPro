@@ -10,11 +10,12 @@ const eventSchema = new mongoose.Schema(
     date: { type: String, required: true },
     rating: { type: Number, required: true },
     imageUrl: { type: String, required: true },
+    totalTickets: { type: Number, required: true },
+    availableTickets: { type: Number, required: true },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const Event = mongoose.model("Event", eventSchema);
 
 module.exports = Event;
-

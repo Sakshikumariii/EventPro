@@ -1,42 +1,63 @@
 const mongoose = require("mongoose");
 
-const bookingSchema = new mongoose.Schema({
-  eventId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Event",
-    required: true,
+const bookingSchema = new mongoose.Schema(
+  {
+    // Optional link to a specific Event document
+    eventId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Event",
+      required: false,
+    },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    // Basic contact / identity
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+    },
+    // Booking details matching the current form
+    eventName: {
+      type: String,
+      required: true,
+    },
+    location: {
+      type: String,
+      required: true,
+    },
+    startDate: {
+      type: String,
+      required: true,
+    },
+    endDate: {
+      type: String,
+      required: true,
+    },
+    message: {
+      type: String,
+    },
+    tickets: {
+      type: Number,
+      required: true,
+      min: 1,
+    },
+    status: {
+      type: String,
+      enum: ["pending", "confirmed", "cancelled"],
+      default: "pending",
+    },
   },
-  userId: {
-    type: mongoose.mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
+  { timestamps: true }
+);
 
-  phone: {
-    type: String,
-    required: true,
-  },
-  tickets:{
-   type:Number,
-   required:true
-  },
-  status:{
-   type:String,
-   enum:["pending","confirmed","cancelled"],
-   default:"pending"
-  },
-  createAt:{
-   type:Date,
-   default: Date.now
-  }
-});
-
-module.exports= mongoose.model("Booking", bookingSchema)
+module.exports = mongoose.model("Booking", bookingSchema);
