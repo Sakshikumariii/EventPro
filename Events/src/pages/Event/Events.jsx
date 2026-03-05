@@ -90,48 +90,85 @@
 // export default Events;
 
 
-import {useEffect,useState} from "react"
-import axiosApi from "../../services/api/axiosApi"
+import EventCard from "../../components/events/EventCard";
+import EventsFilters from "../../components/events/EventsFilters";
+import EventsPagination from "../../components/events/EventsPagination";
+import { useEvents } from "../../hooks/useEvents";
 
+const Events = () => {
+  const {
+    loading,
+    error,
+    filters,
+    events,
+    totalPages,
+    currentPage,
+    totalFiltered,
+    onFilterChange,
+    onClearFilters,
+    onPageChange,
+  } = useEvents();
 
-const Events = ()=>{
+  return (
+    <section className="py-10 md:py-14 bg-gray-50 min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <EventsFilters
+          filters={filters}
+          onChange={onFilterChange}
+          onClear={onClearFilters}
+          resultsCount={totalFiltered}
+        />
 
-const [events,setEvents] = useState([])
+        {loading && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Array.from({ length: 6 }).map((_, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-xl shadow-md border border-gray-100 animate-pulse h-72"
+              >
+                <div className="h-40 w-full bg-gray-200" />
+                <div className="p-4 space-y-3">
+                  <div className="h-4 bg-gray-200 rounded w-3/4" />
+                  <div className="h-3 bg-gray-200 rounded w-1/2" />
+                  <div className="h-3 bg-gray-200 rounded w-1/3" />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
 
-useEffect(()=>{
+        {!loading && error && (
+          <div className="mt-10 text-center">
+            <p className="text-red-600 text-sm md:text-base">{error}</p>
+          </div>
+        )}
 
-axiosApi.get("/events")
-.then(res=>setEvents(res.data))
+        {!loading && !error && events.length === 0 && (
+          <div className="mt-10 text-center">
+            <p className="text-gray-600 text-sm md:text-base">
+              No events found. Try adjusting your search or filters.
+            </p>
+          </div>
+        )}
 
-},[])
+        {!loading && !error && events.length > 0 && (
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {events.map((event) => (
+                <EventCard key={event.id} event={event} />
+              ))}
+            </div>
 
-return(
+            <EventsPagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={onPageChange}
+            />
+          </>
+        )}
+      </div>
+    </section>
+  );
+};
 
-<div>
-
-<h1>Events</h1>
-
-{events.map(event=>(
-<div key={event._id}>
-
-<img src={event.imageUrl} width="200"/>
-
-<h2>{event.title}</h2>
-
-<p>{event.location}</p>
-
-<p>₹{event.price}</p>
-
-<a href={`/events/${event._id}`}>
-Book Event
-</a>
-
-</div>
-))}
-
-</div>
-
-)
-}
-
-export default Events
+export default Events;
