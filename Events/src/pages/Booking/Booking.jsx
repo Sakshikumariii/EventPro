@@ -8,7 +8,6 @@ import SectionTitle from "../../components/ui/SectionTitle";
 import axiosApi from "../../services/api/axiosApi";
 import { useAuth } from "../../context/AuthContext";
 
-
 const Booking = () => {
   const [form, setForm] = useState({
     eventName: "",
@@ -65,7 +64,7 @@ const Booking = () => {
     } catch (err) {
       setError(
         err.response?.data?.message ||
-          "Failed to submit booking. Please try again."
+          "Failed to submit booking. Please try again.",
       );
     } finally {
       setSubmitting(false);
@@ -79,7 +78,8 @@ const Booking = () => {
         <div className="text-center mb-12">
           <SectionTitle highlight="Booking" />
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mt-4">
-            Fill out the form below and we'll get back to you to plan your perfect event
+            Fill out the form below and we'll get back to you to plan your
+            perfect event
           </p>
         </div>
 
