@@ -16,6 +16,7 @@ import Login from "../pages/auth/Login";
 import Signup from "../pages/auth/Signup";
 import ProtectedRoute from "../components/auth/ProtectedRoute";
 import Events from "../pages/Event/Events";
+import EventDetails from "../pages/Event/EventDetails";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "events",
         element: <Events />,
+      },
+      {
+        path: "events/:id",
+        element: <EventDetails />,
       },
       { path: "pricing", element: <Price /> },
       { path: "blog", element: <Blog /> },

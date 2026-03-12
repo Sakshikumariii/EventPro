@@ -7,7 +7,7 @@ const Service = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="space-y-10">
       <div className="text-center mb-12">
         <SectionTitle highlight="Services" />
       </div>

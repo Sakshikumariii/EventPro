@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { EVENT_NAMES, INDIAN_STATES } from "../../constants/constant";
 import SelectField from "../../components/ui/SelectField";
 import InputField from "../../components/ui/InputField";
@@ -9,12 +10,15 @@ import axiosApi from "../../services/api/axiosApi";
 import { useAuth } from "../../context/AuthContext";
 
 const Booking = () => {
+  const location = useLocation();
+  const prefilledEvent = location.state?.event;
+
   const [form, setForm] = useState({
-    eventName: "",
-    location: "",
-    startDate: "",
+    eventName: prefilledEvent?.type || "",
+    location: prefilledEvent?.state || "",
+    startDate: prefilledEvent?.date || "",
     endDate: "",
-    message: "",
+    message: prefilledEvent ? `I am interested in booking the ${prefilledEvent.title} event.` : "",
     phone: "",
     tickets: 1,
   });
@@ -38,8 +42,7 @@ const Booking = () => {
       setSubmitting(true);
 
       await axiosApi.post("/bookings", {
-        // No specific eventId for now; we're booking by type/location
-        eventId: null,
+        eventId: prefilledEvent?._id || prefilledEvent?.id || null,
         name: user?.firstName || "Guest",
         email: user?.email || "",
         phone: form.phone,
@@ -72,12 +75,15 @@ const Booking = () => {
   };
 
   return (
-    <section id="booking" className="py-16 md:py-20 bg-gray-100 min-h-screen">
+    <section
+      id="booking"
+      className="py-16 md:py-20 bg-gray-100 dark:bg-gray-900 min-h-screen transition-colors duration-300"
+    >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <div className="text-center mb-12">
           <SectionTitle highlight="Booking" />
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto mt-4">
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mt-4 transition-colors">
             Fill out the form below and we'll get back to you to plan your
             perfect event
           </p>
@@ -86,7 +92,7 @@ const Booking = () => {
         {/* Form */}
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-xl shadow-lg p-8 md:p-12"
+          className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 md:p-12 border border-gray-100 dark:border-gray-800 transition-colors duration-300"
         >
           {error && (
             <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-sm text-red-700">
@@ -100,21 +106,37 @@ const Booking = () => {
           )}
 
           <div className="grid md:grid-cols-2 gap-6">
-            <SelectField
-              label="Event Type"
-              value={form.eventName}
-              onChange={(e) => handleChange("eventName", e.target.value)}
-              options={EVENT_NAMES}
-              placeholder="Select Event Name"
-            />
+            {prefilledEvent ? (
+              <InputField
+                label="Selected Event"
+                value={prefilledEvent.title}
+                disabled={true}
+              />
+            ) : (
+              <SelectField
+                label="Event Type"
+                value={form.eventName}
+                onChange={(e) => handleChange("eventName", e.target.value)}
+                options={EVENT_NAMES}
+                placeholder="Select Event Name"
+              />
+            )}
 
-            <SelectField
-              label="Location"
-              value={form.location}
-              onChange={(e) => handleChange("location", e.target.value)}
-              options={INDIAN_STATES}
-              placeholder="Select Event Location"
-            />
+            {prefilledEvent ? (
+              <InputField
+                label="Location"
+                value={prefilledEvent.location || prefilledEvent.state}
+                disabled={true}
+              />
+            ) : (
+              <SelectField
+                label="Location"
+                value={form.location}
+                onChange={(e) => handleChange("location", e.target.value)}
+                options={INDIAN_STATES}
+                placeholder="Select Event Location"
+              />
+            )}
 
             <InputField
               label="Start Date"
@@ -160,7 +182,7 @@ const Booking = () => {
             <Button
               type="submit"
               disabled={submitting}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-8 py-3 rounded-lg font-semibold hover:from-primary-600 hover:to-secondary-600 transition-all transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
             >
               {submitting ? "Submitting..." : "Submit Booking"}
             </Button>

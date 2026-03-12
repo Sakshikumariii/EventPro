@@ -27,19 +27,19 @@ const EventsFilters = ({
   );
 
   return (
-    <div className="bg-white rounded-xl shadow-md border border-gray-100 p-4 md:p-5 mb-6 flex flex-col gap-4">
+    <div className="bg-white dark:bg-gray-900 rounded-xl shadow-soft border border-primary-50 dark:border-gray-800 p-4 md:p-5 mb-6 flex flex-col gap-4 transition-colors duration-300">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
           Explore Events
         </h1>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-500 dark:text-gray-400">
           Showing <span className="font-semibold">{resultsCount}</span> events
         </p>
       </div>
 
       <div className="grid md:grid-cols-4 gap-4">
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
+          <label className="text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wide">
             Search
           </label>
           <input
@@ -47,18 +47,18 @@ const EventsFilters = ({
             value={filters.search}
             onChange={(e) => onChange("search", e.target.value)}
             placeholder="Search by title or type..."
-            className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm bg-white dark:bg-gray-900 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
           />
         </div>
 
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
+          <label className="text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wide">
             State
           </label>
           <select
             value={filters.state}
             onChange={(e) => onChange("state", e.target.value)}
-            className="border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm bg-white dark:bg-gray-900 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
           >
             <option value="">All states</option>
             {INDIAN_STATES.map((state) => (
@@ -70,13 +70,13 @@ const EventsFilters = ({
         </div>
 
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
+          <label className="text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wide">
             Type
           </label>
           <select
             value={filters.type}
             onChange={(e) => onChange("type", e.target.value)}
-            className="border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm bg-white dark:bg-gray-900 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
           >
             <option value="">All types</option>
             {uniqueTypesFromNames.map((type) => (
@@ -88,13 +88,13 @@ const EventsFilters = ({
         </div>
 
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
+          <label className="text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wide">
             Sort by
           </label>
           <select
             value={filters.sort}
             onChange={(e) => onChange("sort", e.target.value)}
-            className="border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm bg-white dark:bg-gray-900 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
           >
             {sortOptions.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -109,7 +109,7 @@ const EventsFilters = ({
         <button
           type="button"
           onClick={onClear}
-          className="text-xs md:text-sm text-gray-600 hover:text-gray-900 underline underline-offset-4"
+          className="text-xs md:text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white underline underline-offset-4"
         >
           Clear filters
         </button>

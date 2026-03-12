@@ -110,7 +110,7 @@ const Events = () => {
   } = useEvents();
 
   return (
-    <section className="py-10 md:py-14 bg-gray-50 min-h-screen">
+    <section className="py-10 md:py-14 bg-gray-50 dark:bg-gray-950 min-h-screen transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <EventsFilters
           filters={filters}
@@ -126,11 +126,11 @@ const Events = () => {
                 key={idx}
                 className="bg-white rounded-xl shadow-md border border-gray-100 animate-pulse h-72"
               >
-                <div className="h-40 w-full bg-gray-200" />
+                <div className="h-40 w-full bg-gray-200 dark:bg-gray-700" />
                 <div className="p-4 space-y-3">
-                  <div className="h-4 bg-gray-200 rounded w-3/4" />
-                  <div className="h-3 bg-gray-200 rounded w-1/2" />
-                  <div className="h-3 bg-gray-200 rounded w-1/3" />
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4" />
+                  <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/2" />
+                  <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/3" />
                 </div>
               </div>
             ))}
@@ -139,13 +139,13 @@ const Events = () => {
 
         {!loading && error && (
           <div className="mt-10 text-center">
-            <p className="text-red-600 text-sm md:text-base">{error}</p>
+            <p className="text-red-600 dark:text-red-400 text-sm md:text-base">{error}</p>
           </div>
         )}
 
         {!loading && !error && events.length === 0 && (
           <div className="mt-10 text-center">
-            <p className="text-gray-600 text-sm md:text-base">
+            <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base">
               No events found. Try adjusting your search or filters.
             </p>
           </div>
