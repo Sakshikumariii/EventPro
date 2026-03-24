@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const DecorationCard = ({ image, title, description }) => {
+  const { t } = useTranslation();
   return (
     <article className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition">
       <img
@@ -24,7 +26,7 @@ const DecorationCard = ({ image, title, description }) => {
           className="mt-4 inline-block bg-black text-white py-2 px-4 rounded-md
                      hover:bg-gray-900 transition text-sm"
         >
-          Book Now
+          {t('book_now')}
         </Link>
       </div>
     </article>

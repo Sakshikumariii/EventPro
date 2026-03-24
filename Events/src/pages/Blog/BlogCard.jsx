@@ -1,4 +1,7 @@
+import { useTranslation } from "react-i18next";
+
 const BlogCard = ({ image, title, description }) => {
+  const { t } = useTranslation();
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
       
@@ -19,7 +22,7 @@ const BlogCard = ({ image, title, description }) => {
 
         <button className="bg-black text-white dark:bg-white dark:text-gray-900 px-4 py-2 rounded-md
                            hover:bg-gray-900 dark:hover:bg-gray-200 transition text-sm font-medium">
-          Read more
+          {t('read_more_blog')}
         </button>
       </div>
 

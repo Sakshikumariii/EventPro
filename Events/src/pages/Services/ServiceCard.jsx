@@ -1,4 +1,7 @@
+import { useTranslation } from "react-i18next";
+
 const ServiceCard = ({ icon, title, description, onClick }) => {
+  const { t } = useTranslation();
   return (
     <div
       className="bg-white dark:bg-gray-900 rounded-xl shadow-md p-6 text-center hover:shadow-lg border border-gray-200 dark:border-gray-700 transition-colors duration-300"
@@ -18,7 +21,7 @@ const ServiceCard = ({ icon, title, description, onClick }) => {
         onClick={onClick}
         className="px-5 py-2 rounded-md bg-gray-900 text-white hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200 transition"
       >
-        Learn more
+        {t('learn_more')}
       </button>
     </div>
   );

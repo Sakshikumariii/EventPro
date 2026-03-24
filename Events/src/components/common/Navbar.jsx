@@ -4,12 +4,15 @@ import { useAuth } from "../../context/AuthContext";
 import { FaUser, FaSignOutAlt, FaBars, FaMoon, FaSun } from "react-icons/fa";
 import { useState } from "react";
 import { useTheme } from "../../context/ThemeContext";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { t } = useTranslation();
 
   const handleLogout = () => {
     logout();
@@ -45,14 +48,15 @@ const Navbar = () => {
                   }
                 >
                   <Icon className="text-base" />
-                  {label}
+                  {t(label.toLowerCase())}
                 </NavLink>
               </li>
             ))}
           </ul>
 
-          {/* Theme + Auth Buttons - Desktop */}
+          {/* Theme + Auth + Language Switcher Buttons - Desktop */}
           <div className="hidden md:flex items-center gap-4">
+            <LanguageSwitcher />
             <button
               onClick={toggleTheme}
               className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 text-xs font-medium transition"
@@ -61,12 +65,12 @@ const Navbar = () => {
               {theme === "dark" ? (
                 <>
                   <FaSun className="text-yellow-300" />
-                  <span>Light</span>
+                  <span>{t('light')}</span>
                 </>
               ) : (
                 <>
                   <FaMoon className="text-blue-300" />
-                  <span>Dark</span>
+                  <span>{t('dark')}</span>
                 </>
               )}
             </button>
@@ -75,14 +79,14 @@ const Navbar = () => {
               <>
                 <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
                   <FaUser className="text-sm" />
-                  <span className="text-sm">{user?.firstName || user?.email || "User"}</span>
+                  <span className="text-sm">{user?.firstName || user?.email || t('user')}</span>
                 </div>
                 <button
                   onClick={handleLogout}
                   className="flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg transition text-sm font-medium"
                 >
                   <FaSignOutAlt className="text-sm" />
-                  Logout
+                  {t('logout')}
                 </button>
               </>
             ) : (
@@ -91,13 +95,13 @@ const Navbar = () => {
                   to="/login"
                   className="px-4 py-2 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition text-sm font-medium"
                 >
-                  Login
+                  {t('login')}
                 </Link>
                 <Link
                   to="/signup"
                   className="px-4 py-2 bg-primary-600 hover:bg-primary-700 rounded-lg transition text-sm font-medium"
                 >
-                  Sign Up
+                  {t('signup')}
                 </Link>
               </>
             )}
@@ -130,7 +134,7 @@ const Navbar = () => {
                     }
                   >
                     <Icon className="text-base" />
-                    {label}
+                    {t(label.toLowerCase())}
                   </NavLink>
                 </li>
               ))}
@@ -142,14 +146,14 @@ const Navbar = () => {
                 <>
                   <div className="flex items-center gap-2 px-4 py-2 text-gray-300 text-sm">
                     <FaUser className="text-sm" />
-                    <span>{user?.firstName || user?.email || "User"}</span>
+                    <span>{user?.firstName || user?.email || t('user')}</span>
                   </div>
                   <button
                     onClick={handleLogout}
                     className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg transition text-sm font-medium"
                   >
                     <FaSignOutAlt className="text-sm" />
-                    Logout
+                    {t('logout')}
                   </button>
                 </>
               ) : (
@@ -159,14 +163,14 @@ const Navbar = () => {
                     onClick={() => setMobileMenuOpen(false)}
                     className="block w-full text-center px-4 py-2 text-gray-300 hover:text-white transition text-sm font-medium rounded-lg hover:bg-gray-800"
                   >
-                    Login
+                    {t('login')}
                   </Link>
                   <Link
                     to="/signup"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block w-full text-center px-4 py-2 bg-primary-600 hover:bg-primary-700 rounded-lg transition text-sm font-medium"
                   >
-                    Sign Up
+                    {t('signup')}
                   </Link>
                 </>
               )}

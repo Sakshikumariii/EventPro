@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const EventCard = ({ event }) => {
+  const { t } = useTranslation();
   return (
     <div className="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all border border-gray-100 dark:border-gray-800">
       <div className="h-56 w-full overflow-hidden">
@@ -20,7 +22,7 @@ const EventCard = ({ event }) => {
           {event.location}, {event.state} • {event.type}
         </p>
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          Date: <span className="font-medium text-gray-900 dark:text-gray-200">{event.date}</span>
+          {t('date')}: <span className="font-medium text-gray-900 dark:text-gray-200">{event.date}</span>
         </p>
         <div className="flex items-center justify-between mt-2">
           <span className="text-primary-600 dark:text-primary-400 font-semibold">

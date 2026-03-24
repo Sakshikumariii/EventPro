@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { EVENT_NAMES, INDIAN_STATES } from "../../constants/constant";
+import { useTranslation } from "react-i18next";
 
 const uniqueTypesFromNames = Array.from(
   new Set(
@@ -16,51 +17,52 @@ const EventsFilters = ({
   resultsCount,
   onClear,
 }) => {
+  const { t } = useTranslation();
   const sortOptions = useMemo(
     () => [
-      { value: "date-asc", label: "Date (Earliest first)" },
-      { value: "date-desc", label: "Date (Latest first)" },
-      { value: "price-asc", label: "Price (Low to High)" },
-      { value: "price-desc", label: "Price (High to Low)" },
+      { value: "date-asc", labelKey: "sort_date_asc" },
+      { value: "date-desc", labelKey: "sort_date_desc" },
+      { value: "price-asc", labelKey: "sort_price_asc" },
+      { value: "price-desc", labelKey: "sort_price_desc" },
     ],
-    []
+    [t]
   );
 
   return (
     <div className="bg-white dark:bg-gray-900 rounded-xl shadow-soft border border-primary-50 dark:border-gray-800 p-4 md:p-5 mb-6 flex flex-col gap-4 transition-colors duration-300">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
         <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-          Explore Events
+          {t('explore_events')}
         </h1>
         <p className="text-sm text-gray-500 dark:text-gray-400">
-          Showing <span className="font-semibold">{resultsCount}</span> events
+          {t('showing')} <span className="font-semibold">{resultsCount}</span> {t('events_count')}
         </p>
       </div>
 
       <div className="grid md:grid-cols-4 gap-4">
         <div className="flex flex-col gap-1">
           <label className="text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wide">
-            Search
+            {t('search_label')}
           </label>
           <input
             type="text"
             value={filters.search}
             onChange={(e) => onChange("search", e.target.value)}
-            placeholder="Search by title or type..."
+            placeholder={t('search_placeholder')}
             className="border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm bg-white dark:bg-gray-900 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
           />
         </div>
 
         <div className="flex flex-col gap-1">
           <label className="text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wide">
-            State
+            {t('state_label')}
           </label>
           <select
             value={filters.state}
             onChange={(e) => onChange("state", e.target.value)}
             className="border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm bg-white dark:bg-gray-900 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
           >
-            <option value="">All states</option>
+            <option value="">{t('all_states')}</option>
             {INDIAN_STATES.map((state) => (
               <option key={state} value={state}>
                 {state}
@@ -71,14 +73,14 @@ const EventsFilters = ({
 
         <div className="flex flex-col gap-1">
           <label className="text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wide">
-            Type
+            {t('type_label')}
           </label>
           <select
             value={filters.type}
             onChange={(e) => onChange("type", e.target.value)}
             className="border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm bg-white dark:bg-gray-900 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
           >
-            <option value="">All types</option>
+            <option value="">{t('all_types')}</option>
             {uniqueTypesFromNames.map((type) => (
               <option key={type} value={type}>
                 {type}
@@ -89,7 +91,7 @@ const EventsFilters = ({
 
         <div className="flex flex-col gap-1">
           <label className="text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wide">
-            Sort by
+            {t('sort_by_label')}
           </label>
           <select
             value={filters.sort}
@@ -98,7 +100,7 @@ const EventsFilters = ({
           >
             {sortOptions.map((opt) => (
               <option key={opt.value} value={opt.value}>
-                {opt.label}
+                {t(opt.labelKey)}
               </option>
             ))}
           </select>
@@ -111,7 +113,7 @@ const EventsFilters = ({
           onClick={onClear}
           className="text-xs md:text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white underline underline-offset-4"
         >
-          Clear filters
+          {t('clear_filters')}
         </button>
       </div>
     </div>

@@ -94,8 +94,10 @@ import EventCard from "../../components/events/EventCard";
 import EventsFilters from "../../components/events/EventsFilters";
 import EventsPagination from "../../components/events/EventsPagination";
 import { useEvents } from "../../hooks/useEvents";
+import { useTranslation } from "react-i18next";
 
 const Events = () => {
+  const { t } = useTranslation();
   const {
     loading,
     error,
@@ -146,7 +148,7 @@ const Events = () => {
         {!loading && !error && events.length === 0 && (
           <div className="mt-10 text-center">
             <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base">
-              No events found. Try adjusting your search or filters.
+              {t('no_events_found')}
             </p>
           </div>
         )}

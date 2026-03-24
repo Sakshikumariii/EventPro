@@ -1,8 +1,10 @@
 import {useEffect,useState} from "react"
 import {useParams, useNavigate} from "react-router-dom"
 import axiosApi from "../../services/api/axiosApi"
+import { useTranslation } from "react-i18next"
 
 const EventDetails = ()=>{
+  const { t } = useTranslation()
 
 const {id} = useParams()
 
@@ -18,7 +20,7 @@ axiosApi.get(`/events/${id}`)
 
 if(!event) return (
   <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950">
-    <p className="text-xl text-gray-600 dark:text-gray-400">Loading event details...</p>
+    <p className="text-xl text-gray-600 dark:text-gray-400">{t('loading_event_details')}</p>
   </div>
 )
 
@@ -38,15 +40,15 @@ return (
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-gray-600 dark:text-gray-300">
           <div>
-            <p className="font-medium text-gray-900 dark:text-white mb-2">Location</p>
+            <p className="font-medium text-gray-900 dark:text-white mb-2">{t('location')}</p>
             <p>{event.location}</p>
           </div>
           <div>
-            <p className="font-medium text-gray-900 dark:text-white mb-2">Date & Time</p>
+            <p className="font-medium text-gray-900 dark:text-white mb-2">{t('date_time')}</p>
             <p>{event.date}</p>
           </div>
           <div>
-            <p className="font-medium text-gray-900 dark:text-white mb-2">Ticket Price</p>
+            <p className="font-medium text-gray-900 dark:text-white mb-2">{t('ticket_price')}</p>
             <p className="text-2xl font-semibold text-primary-600 dark:text-primary-400">
               ₹{event.price?.toLocaleString("en-IN") || event.price}
             </p>
@@ -58,7 +60,7 @@ return (
             onClick={() => navigate('/booking', { state: { event } })}
             className="inline-block px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg transition-colors duration-200"
           >
-            Book Now
+            {t('book_now')}
           </button>
         </div>
       </div>

@@ -37,9 +37,11 @@
 import { Link } from "react-router-dom";
 import HeroSlider from "../../components/ui/HeroSlider";
 import slide from "../../assets/image.png";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
   const heroImages = [slide];
+  const { t } = useTranslation();
 
   return (
     <section className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-white dark:bg-gray-900 transition-colors duration-300">
@@ -47,18 +49,18 @@ const Home = () => {
 
       <div className="relative z-10 text-center px-4">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-          Welcome to Event World
+          {t('welcome_title')}
         </h1>
 
         <h2 className="text-2xl md:text-3xl font-medium text-gray-800 dark:text-gray-200 mb-8">
-          We organize unforgettable events
+          {t('welcome_desc')}
         </h2>
 
         <Link
           to="/booking"
           className="inline-block px-8 py-3 rounded-md bg-gray-900 text-white hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200 transition"
         >
-          Book Now
+          {t('book_now')}
         </Link>
       </div>
     </section>
