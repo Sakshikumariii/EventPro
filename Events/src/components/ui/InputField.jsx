@@ -12,6 +12,7 @@ const InputField = ({
   label,
   className = "",
   disabled = false,
+  ...rest
 }) => {
   const Component = as;
 
@@ -41,6 +42,7 @@ const InputField = ({
           disabled:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-60 dark:disabled:bg-gray-700
           placeholder:text-gray-400 dark:placeholder:text-gray-500`}
         disabled={disabled}
+        {...rest}
       />
 
       {error && touched && (

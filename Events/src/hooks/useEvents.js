@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import axiosApi from "../services/api/axiosApi";
+import { eventsService } from "../services/api/eventsService";
+import { getSafeText } from "../utils/eventUtils";
 
 const ITEMS_PER_PAGE = 9;
 
@@ -23,8 +24,8 @@ export const useEvents = () => {
       setError("");
 
       try {
-        const res = await axiosApi.get("/events");
-        setEvents(res.data || []);
+        const data = await eventsService.getEvents();
+        setEvents(data);
       } catch (err) {
         console.error("Failed to fetch events", err);
         setError(
@@ -56,13 +57,13 @@ export const useEvents = () => {
     let list = [...events];
 
     if (filters.search) {
-      const q = filters.search.toLowerCase();
+      const q = getSafeText(filters.search);
       list = list.filter(
         (event) =>
-          event.title.toLowerCase().includes(q) ||
-          event.type.toLowerCase().includes(q) ||
-          event.location.toLowerCase().includes(q) ||
-          event.state.toLowerCase().includes(q)
+          getSafeText(event.title).includes(q) ||
+          getSafeText(event.type).includes(q) ||
+          getSafeText(event.location).includes(q) ||
+          getSafeText(event.state).includes(q)
       );
     }
 

@@ -1,7 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import LandingPage from "../components/layout/LandingPage";
 import Booking from "../pages/Booking/Booking";
-import Price from "../pages/Price/Price";
 import Blog from "../pages/Blog/Blog";
 import Gallery from "../pages/Gallery/Gallery";
 import About from "../pages/Home/About";
@@ -41,7 +40,6 @@ const router = createBrowserRouter([
         path: "events/:id",
         element: <EventDetails />,
       },
-      { path: "pricing", element: <Price /> },
       { path: "blog", element: <Blog /> },
       { path: "gallery", element: <Gallery /> },
       { path: "contact", element: <Contact /> },

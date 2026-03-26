@@ -1,4 +1,13 @@
-const Button = ({ text, type = "submit", onClick, disabled = false, variant = "primary", className = "", icon: Icon }) => {
+const Button = ({
+  text,
+  children,
+  type = "submit",
+  onClick,
+  disabled = false,
+  variant = "primary",
+  className = "",
+  icon: Icon,
+}) => {
   const baseStyles = "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none focus:outline-none focus:ring-2 focus:ring-offset-2";
   
   const variants = {
@@ -17,7 +26,7 @@ const Button = ({ text, type = "submit", onClick, disabled = false, variant = "p
       className={`${baseStyles} ${variants[variant]} ${className}`}
     >
       {Icon && <Icon className="h-5 w-5" />}
-      {text}
+      {children || text}
     </button>
   );
 };

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { EVENT_NAMES, INDIAN_STATES } from "../../constants/constant";
 import SelectField from "../../components/ui/SelectField";
@@ -6,32 +6,33 @@ import InputField from "../../components/ui/InputField";
 import TextArea from "../../components/ui/TextArea";
 import Button from "../../components/ui/Button";
 import SectionTitle from "../../components/ui/SectionTitle";
-import axiosApi from "../../services/api/axiosApi";
 import { useAuth } from "../../context/AuthContext";
+import { useFormState } from "../../hooks/useFormState";
+import { bookingService } from "../../services/api/bookingService";
+import { getEventId } from "../../utils/eventUtils";
 
 const Booking = () => {
   const location = useLocation();
   const prefilledEvent = location.state?.event;
-
-  const [form, setForm] = useState({
+  const initialFormState = {
     eventName: prefilledEvent?.type || "",
     location: prefilledEvent?.state || "",
     startDate: prefilledEvent?.date || "",
     endDate: "",
-    message: prefilledEvent ? `I am interested in booking the ${prefilledEvent.title} event.` : "",
+    message: prefilledEvent
+      ? `I am interested in booking the ${prefilledEvent.title} event.`
+      : "",
     phone: "",
     tickets: 1,
-  });
+  };
+
+  const { form, updateField, handleInputChange, resetForm } = useFormState(initialFormState);
 
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
   const { user } = useAuth();
-
-  const handleChange = (key, value) => {
-    setForm({ ...form, [key]: value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,8 +42,8 @@ const Booking = () => {
     try {
       setSubmitting(true);
 
-      await axiosApi.post("/bookings", {
-        eventId: prefilledEvent?._id || prefilledEvent?.id || null,
+      await bookingService.createBooking({
+        eventId: getEventId(prefilledEvent) || null,
         name: user?.firstName || "Guest",
         email: user?.email || "",
         phone: form.phone,
@@ -55,7 +56,7 @@ const Booking = () => {
       });
 
       setSuccess("Your booking has been submitted successfully!");
-      setForm({
+      resetForm({
         eventName: "",
         location: "",
         startDate: "",
@@ -116,7 +117,7 @@ const Booking = () => {
               <SelectField
                 label="Event Type"
                 value={form.eventName}
-                onChange={(e) => handleChange("eventName", e.target.value)}
+                onChange={(e) => updateField("eventName", e.target.value)}
                 options={EVENT_NAMES}
                 placeholder="Select Event Name"
               />
@@ -132,7 +133,7 @@ const Booking = () => {
               <SelectField
                 label="Location"
                 value={form.location}
-                onChange={(e) => handleChange("location", e.target.value)}
+                onChange={(e) => updateField("location", e.target.value)}
                 options={INDIAN_STATES}
                 placeholder="Select Event Location"
               />
@@ -141,38 +142,43 @@ const Booking = () => {
             <InputField
               label="Start Date"
               type="date"
+              name="startDate"
               value={form.startDate}
-              onChange={(e) => handleChange("startDate", e.target.value)}
+              onChange={handleInputChange}
             />
 
             <InputField
               label="End Date"
               type="date"
+              name="endDate"
               value={form.endDate}
-              onChange={(e) => handleChange("endDate", e.target.value)}
+              onChange={handleInputChange}
             />
 
             <InputField
               label="Phone Number"
               type="tel"
+              name="phone"
               value={form.phone}
-              onChange={(e) => handleChange("phone", e.target.value)}
+              onChange={handleInputChange}
             />
 
             <InputField
               label="Number of Tickets"
               type="number"
+              name="tickets"
               min={1}
               value={form.tickets}
-              onChange={(e) => handleChange("tickets", e.target.value)}
+              onChange={handleInputChange}
             />
           </div>
 
           <div className="mt-6">
             <TextArea
               label="Additional Message"
+              name="message"
               value={form.message}
-              onChange={(e) => handleChange("message", e.target.value)}
+              onChange={handleInputChange}
               placeholder="Enter the Message"
               rows={5}
             />

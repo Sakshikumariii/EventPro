@@ -1,4 +1,15 @@
-const TextArea = ({ value, onChange, placeholder, label, error, touched, rows = 4, className = "" }) => {
+const TextArea = ({
+  name,
+  value,
+  onChange,
+  placeholder,
+  label,
+  error,
+  touched,
+  rows = 4,
+  className = "",
+  ...rest
+}) => {
   return (
     <div className={`mb-4 ${className}`}>
       {label && (
@@ -7,6 +18,7 @@ const TextArea = ({ value, onChange, placeholder, label, error, touched, rows = 
         </label>
       )}
       <textarea
+        name={name}
         rows={rows}
         value={value}
         onChange={onChange}
@@ -19,6 +31,7 @@ const TextArea = ({ value, onChange, placeholder, label, error, touched, rows = 
           focus:ring-2 focus:border-transparent bg-white dark:bg-gray-800 dark:text-gray-100
           disabled:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-60 dark:disabled:bg-gray-900
           placeholder:text-gray-400 dark:placeholder:text-gray-500`}
+        {...rest}
       />
       {error && touched && (
         <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
