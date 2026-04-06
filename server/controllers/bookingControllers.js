@@ -65,6 +65,7 @@
 
 
 const Booking = require("../models/Booking");
+const Event = require("../models/Event");
 
 // Create booking
 exports.createBooking = async (req, res) => {
@@ -81,6 +82,7 @@ exports.createBooking = async (req, res) => {
       message,
       tickets,
     } = req.body;
+    const requestedTickets = Number(tickets) || 0;
 
     if (
       !name ||
@@ -90,30 +92,62 @@ exports.createBooking = async (req, res) => {
       !location ||
       !startDate ||
       !endDate ||
-      !tickets
+      !requestedTickets
     ) {
       return res.status(400).json({
         message: "All required fields must be provided",
       });
     }
 
-    const booking = await Booking.create({
-      eventId: eventId || null,
-      userId: req.user.id,
-      name,
-      email,
-      phone,
-      eventName,
-      location,
-      startDate,
-      endDate,
-      message,
-      tickets,
-    });
+    if (requestedTickets < 1) {
+      return res.status(400).json({
+        message: "Tickets must be at least 1",
+      });
+    }
+
+    let updatedEvent = null;
+    if (eventId) {
+      updatedEvent = await Event.findOneAndUpdate(
+        { _id: eventId, availableTickets: { $gte: requestedTickets } },
+        { $inc: { availableTickets: -requestedTickets } },
+        { new: true }
+      );
+
+      if (!updatedEvent) {
+        return res.status(400).json({
+          message: "Not enough tickets available for this event",
+        });
+      }
+    }
+
+    let booking;
+    try {
+      booking = await Booking.create({
+        eventId: eventId || null,
+        userId: req.user.id,
+        name,
+        email,
+        phone,
+        eventName,
+        location,
+        startDate,
+        endDate,
+        message,
+        tickets: requestedTickets,
+      });
+    } catch (createErr) {
+      if (updatedEvent?._id) {
+        await Event.findByIdAndUpdate(updatedEvent._id, {
+          $inc: { availableTickets: requestedTickets },
+        });
+      }
+      throw createErr;
+    }
 
     res.status(201).json({
       message: "Booking created successfully",
       booking,
+      remainingTickets: updatedEvent?.availableTickets,
     });
   } catch (error) {
     console.error("Create booking error:", error);
@@ -161,12 +195,48 @@ exports.getBookingById = async (req, res) => {
 exports.updateBookingStatus = async (req, res) => {
   try {
     const { status } = req.body;
+    const validStatuses = ["pending", "confirmed", "cancelled"];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({
+        message: "Invalid booking status",
+      });
+    }
 
-    const booking = await Booking.findByIdAndUpdate(
-      req.params.id,
-      { status },
-      { new: true }
-    );
+    const existingBooking = await Booking.findById(req.params.id);
+    if (!existingBooking) {
+      return res.status(404).json({
+        message: "Booking not found",
+      });
+    }
+
+    const wasCancelled = existingBooking.status === "cancelled";
+    const willBeCancelled = status === "cancelled";
+
+    if (existingBooking.eventId && !wasCancelled && willBeCancelled) {
+      await Event.findByIdAndUpdate(existingBooking.eventId, {
+        $inc: { availableTickets: existingBooking.tickets },
+      });
+    }
+
+    if (existingBooking.eventId && wasCancelled && !willBeCancelled) {
+      const reserved = await Event.findOneAndUpdate(
+        {
+          _id: existingBooking.eventId,
+          availableTickets: { $gte: existingBooking.tickets },
+        },
+        { $inc: { availableTickets: -existingBooking.tickets } },
+        { new: true }
+      );
+
+      if (!reserved) {
+        return res.status(400).json({
+          message: "Cannot confirm booking, insufficient tickets available",
+        });
+      }
+    }
+
+    existingBooking.status = status;
+    const booking = await existingBooking.save();
 
     res.json({
       message: "Booking status updated",
@@ -182,6 +252,19 @@ exports.updateBookingStatus = async (req, res) => {
 // Delete booking
 exports.deleteBooking = async (req, res) => {
   try {
+    const booking = await Booking.findById(req.params.id);
+    if (!booking) {
+      return res.status(404).json({
+        message: "Booking not found",
+      });
+    }
+
+    if (booking.eventId && booking.status !== "cancelled") {
+      await Event.findByIdAndUpdate(booking.eventId, {
+        $inc: { availableTickets: booking.tickets },
+      });
+    }
+
     await Booking.findByIdAndDelete(req.params.id);
 
     res.json({

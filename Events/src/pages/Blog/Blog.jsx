@@ -1,4 +1,4 @@
-import { BLOGS } from "../../constants/constant";
+import { BLOGS } from "../../constants/blog.constants";
 import BlogCard from "./BlogCard";
 import { useTranslation } from "react-i18next";
 import SectionGrid from "../../components/ui/SectionGrid";

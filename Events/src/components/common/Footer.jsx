@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { FOOTER_COPYRIGHT, FOOTER_SECTIONS, CONTACT_INFO } from "../../constants/constant";
+import { FOOTER_COPYRIGHT, FOOTER_SECTIONS } from "../../constants/ui.constants";
+import { CONTACT_INFO } from "../../constants/company.constants";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 
 const Footer = () => {

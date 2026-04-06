@@ -1,5 +1,5 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { navLinks } from "../../constants/constant";
+import { navLinks } from "../../constants/ui.constants";
 import { useAuth } from "../../context/AuthContext";
 import { FaUser, FaSignOutAlt, FaBars, FaMoon, FaSun } from "react-icons/fa";
 import { useState } from "react";

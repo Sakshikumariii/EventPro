@@ -1,4 +1,4 @@
-import { DISHES } from "../../constants/constant";
+import { DISHES } from "../../constants/services.constants";
 import DishCard from "./DishCard";
 import { useTranslation } from "react-i18next";
 import SectionGrid from "../../components/ui/SectionGrid";

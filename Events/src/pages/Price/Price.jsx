@@ -1,4 +1,4 @@
-import { PRICING_LIST } from "../../constants/constant";
+import { PRICING_LIST } from "../../constants/events.constants";
 import useAOS from "../../hooks/useAOS";
 import PriceCard from "./PriceCard";
 import SectionGrid from "../../components/ui/SectionGrid";

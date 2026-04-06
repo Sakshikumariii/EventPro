@@ -8,6 +8,9 @@ const EventDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { event, loading, error } = useEventDetails(id);
+  const parsedAvailable = Number(event?.availableTickets);
+  const hasAvailableTickets = Number.isFinite(parsedAvailable);
+  const isSoldOut = hasAvailableTickets && parsedAvailable <= 0;
 
   if (loading) {
     return (
@@ -66,14 +69,33 @@ const EventDetails = () => {
                 {formatEventPrice(event.price)}
               </p>
             </div>
+            <div>
+              <p className="font-medium text-gray-900 dark:text-white mb-2">
+                Available Tickets
+              </p>
+              <p
+                className={`text-2xl font-semibold ${
+                  hasAvailableTickets && parsedAvailable > 0
+                    ? "text-emerald-600 dark:text-emerald-400"
+                    : "text-red-600 dark:text-red-400"
+                }`}
+              >
+                {hasAvailableTickets
+                  ? parsedAvailable > 0
+                    ? parsedAvailable
+                    : "Sold Out"
+                  : "Not Available"}
+              </p>
+            </div>
           </div>
 
           <div className="pt-6 border-t border-gray-100 dark:border-gray-800">
             <button
+              disabled={isSoldOut}
               onClick={() => navigate("/booking", { state: { event } })}
-              className="inline-block px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg transition-colors duration-200"
+              className="inline-block px-8 py-3 bg-primary-600 hover:bg-primary-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-colors duration-200"
             >
-              {t("book_now")}
+              {isSoldOut ? "Sold Out" : t("book_now")}
             </button>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { EVENT_NAMES, INDIAN_STATES } from "../../constants/constant";
+import { EVENT_NAMES, INDIAN_STATES } from "../../constants/events.constants";
 import SelectField from "../../components/ui/SelectField";
 import InputField from "../../components/ui/InputField";
 import TextArea from "../../components/ui/TextArea";

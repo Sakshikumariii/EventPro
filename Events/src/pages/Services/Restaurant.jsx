@@ -1,4 +1,4 @@
-import { RESTAURANTS } from "../../constants/constant";
+import { RESTAURANTS } from "../../constants/services.constants";
 import RestaurantCard from "./RestaurantCard";
 import { useTranslation } from "react-i18next";
 import SectionGrid from "../../components/ui/SectionGrid";

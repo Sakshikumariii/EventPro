@@ -1,4 +1,4 @@
-import { DECORATIONS } from "../../constants/constant";
+import { DECORATIONS } from "../../constants/services.constants";
 import DecorationCard from "./DecorationCard";
 import { useTranslation } from "react-i18next";
 import SectionGrid from "../../components/ui/SectionGrid";

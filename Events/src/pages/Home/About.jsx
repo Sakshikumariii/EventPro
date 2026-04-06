@@ -1,5 +1,5 @@
 import SectionTitle from "../../components/ui/SectionTitle";
-import { ABOUT_TEXT } from "../../constants/constant";
+import { ABOUT_TEXT } from "../../constants/company.constants";
 import useAOS from "../../hooks/useAOS";
 import Aboutimg from "../../assets/about.png";
 import { useTranslation } from "react-i18next";

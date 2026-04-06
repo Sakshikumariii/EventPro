@@ -1,4 +1,4 @@
-import { GALLERY_IMAGES } from "../../constants/constant";
+import { GALLERY_IMAGES } from "../../constants/events.constants";
 import useAOS from "../../hooks/useAOS";
 import GalleryCard from "./GalleryCard";
 import SectionGrid from "../../components/ui/SectionGrid";

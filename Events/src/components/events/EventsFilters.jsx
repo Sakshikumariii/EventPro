@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { EVENT_NAMES, INDIAN_STATES } from "../../constants/constant";
+import { EVENT_NAMES, INDIAN_STATES } from "../../constants/events.constants";
 import { useTranslation } from "react-i18next";
 
 const uniqueTypesFromNames = Array.from(

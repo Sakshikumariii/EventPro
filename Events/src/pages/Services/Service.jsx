@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import ServiceCard from "./ServiceCard";
-import { SERVICES } from "../../constants/constant";
+import { SERVICES } from "../../constants/services.constants";
 import SectionTitle from "../../components/ui/SectionTitle";
 import { useTranslation } from "react-i18next";
 
