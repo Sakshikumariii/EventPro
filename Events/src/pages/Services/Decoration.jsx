@@ -1,31 +1,22 @@
-import { DECORATIONS } from "../../constants/constant";
+import { DECORATIONS } from "../../constants/services.constants";
 import DecorationCard from "./DecorationCard";
-import SectionTitle from "../../components/ui/SectionTitle";
+import { useTranslation } from "react-i18next";
+import SectionGrid from "../../components/ui/SectionGrid";
 
 const Decoration = () => {
+  const { t } = useTranslation();
+
   return (
-    <section id="decorations" className=" bg-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Title */}
-        <div className="text-center mb-12">
-          <SectionTitle highlight="Decorations" />
-        </div>
-
-        {/* Grid */}
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {DECORATIONS.map((item) => (
-            <DecorationCard
-              key={item.id}
-              image={item.image}
-              title={item.title}
-              description={item.description}
-            />
-          ))}
-        </div>
-
-      </div>
-    </section>
+    <SectionGrid id="decorations" title={t("decorations")}>
+      {DECORATIONS.map((item) => (
+        <DecorationCard
+          key={item.id}
+          image={item.image}
+          title={item.title}
+          description={item.description}
+        />
+      ))}
+    </SectionGrid>
   );
 };
 

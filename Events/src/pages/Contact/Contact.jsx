@@ -27,9 +27,9 @@ const Contact = () => {
   });
 
   return (
-    <section className="py-16 md:py-20 bg-gray-100">
+    <section className="py-16 md:py-20 bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-xl shadow-lg p-8 md:p-12">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 md:p-12 transition-colors duration-300">
 
           {/* Title */}
           <div className="text-center mb-10">
@@ -37,7 +37,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="grid md:grid-cols-3 gap-6 mb-10 text-gray-700">
+          <div className="grid md:grid-cols-3 gap-6 mb-10 text-gray-700 dark:text-gray-300">
             <p className="flex items-center gap-2">
               <FaMapMarkerAlt /> 123 Event Street, Bangalore, India
             </p>
@@ -95,10 +95,10 @@ const Contact = () => {
           </form>
 
           {/* Social Icons */}
-          <div className="flex justify-center gap-6 mt-10 text-2xl text-gray-600">
-            <FaFacebook className="hover:text-blue-600 cursor-pointer transition-colors duration-200 transform hover:scale-110" />
-            <FaInstagram className="hover:text-purple-600 cursor-pointer transition-colors duration-200 transform hover:scale-110" />
-            <FaTwitter className="hover:text-blue-400 cursor-pointer transition-colors duration-200 transform hover:scale-110" />
+          <div className="flex justify-center gap-6 mt-10 text-2xl text-gray-600 dark:text-gray-400">
+            <FaFacebook className="hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer" />
+            <FaInstagram className="hover:text-pink-500 dark:hover:text-pink-400 cursor-pointer" />
+            <FaTwitter className="hover:text-blue-400 dark:hover:text-blue-300 cursor-pointer" />
           </div>
 
         </div>

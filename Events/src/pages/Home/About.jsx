@@ -1,17 +1,22 @@
 import SectionTitle from "../../components/ui/SectionTitle";
-import { ABOUT_TEXT } from "../../constants/constant";
+import { ABOUT_TEXT } from "../../constants/company.constants";
 import useAOS from "../../hooks/useAOS";
 import Aboutimg from "../../assets/about.png";
+import { useTranslation } from "react-i18next";
 
 const About = () => {
   useAOS();
+  const { t } = useTranslation();
 
   return (
-    <section id="about" className="py-8 md:py-12 bg-white">
+    <section
+      id="about"
+      className="py-16 md:py-20 bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12" data-aos="fade-up">
           <SectionTitle
-            highlight="About us"
+            highlight={t('about_us')}
           />
         </div>
 
@@ -25,19 +30,18 @@ const About = () => {
           </div>
 
           <div data-aos="fade-left" className="space-y-6">
-            <h3 className="text-2xl md:text-3xl font-semibold mb-4 italic text-gray-900">
-              How Event Works
+            <h3 className="text-2xl md:text-3xl font-semibold mb-4 italic text-gray-900 dark:text-white">
+              {t('how_event_works')}
             </h3>
 
-            <p className="text-gray-600 leading-relaxed mb-6 text-base md:text-lg">
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6 text-base md:text-lg">
               {ABOUT_TEXT.description}
             </p>
 
             <button
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg
-                               hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 font-semibold shadow-md hover:shadow-lg"
+              className="px-6 py-3 rounded-md font-medium bg-gray-900 text-white hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200 transition transform hover:scale-105"
             >
-              Read more...
+              {t('read_more')}
             </button>
           </div>
         </div>

@@ -2,21 +2,21 @@ const SelectField = ({ value, onChange, options, placeholder, label, error, touc
   return (
     <div className={`mb-4 ${className}`}>
       {label && (
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           {label}
         </label>
       )}
       <select
         value={value}
         onChange={onChange}
-        className={`w-full border rounded-xl px-4 py-3.5 outline-none transition-all duration-200 shadow-sm
+        className={`w-full border rounded-xl px-4 py-3.5 outline-none transition-all duration-200
           ${error && touched 
-            ? "border-red-400 focus:ring-red-400 bg-red-50/50" 
-            : "border-gray-300 focus:ring-blue-500 hover:border-blue-300 hover:shadow-md"
+            ? "border-red-400 focus:ring-red-400 bg-red-50/50 dark:bg-red-900/20" 
+            : "border-gray-300 focus:ring-blue-500 hover:border-gray-400 dark:border-gray-600 dark:focus:ring-blue-400 dark:hover:border-gray-500"
           }
           focus:ring-2 focus:border-transparent
-          bg-white cursor-pointer
-          disabled:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-60`}
+          bg-white dark:bg-gray-800 dark:text-gray-100 cursor-pointer
+          disabled:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-60 dark:disabled:bg-gray-900`}
       >
         <option value="">{placeholder}</option>
         {options.map((item, index) => (

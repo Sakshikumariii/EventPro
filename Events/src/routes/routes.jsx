@@ -1,7 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import LandingPage from "../components/layout/LandingPage";
 import Booking from "../pages/Booking/Booking";
-import Price from "../pages/Price/Price";
 import Blog from "../pages/Blog/Blog";
 import Gallery from "../pages/Gallery/Gallery";
 import About from "../pages/Home/About";
@@ -15,7 +14,8 @@ import Layout from "../components/layout/Layout";
 import Login from "../pages/auth/Login";
 import Signup from "../pages/auth/Signup";
 import ProtectedRoute from "../components/auth/ProtectedRoute";
-import Events from "../pages/Events/Events";
+import Events from "../pages/Event/Events";
+import EventDetails from "../pages/Event/EventDetails";
 
 const router = createBrowserRouter([
   {
@@ -23,16 +23,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <LandingPage /> },
-
-      // ✅ Public routes
       { path: "about", element: <About /> },
-      { path: "events", element: <Events /> },
-      { path: "pricing", element: <Price /> },
-      { path: "blog", element: <Blog /> },
-      { path: "gallery", element: <Gallery /> },
-      { path: "contact", element: <Contact /> },
-
-      // 🔒 Protected route
       {
         path: "booking",
         element: (
@@ -41,8 +32,17 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
-
-      // ✅ Public nested routes
+      {
+        path: "events",
+        element: <Events />,
+      },
+      {
+        path: "events/:id",
+        element: <EventDetails />,
+      },
+      { path: "blog", element: <Blog /> },
+      { path: "gallery", element: <Gallery /> },
+      { path: "contact", element: <Contact /> },
       {
         path: "service",
         element: <ServiceLayout />,
@@ -55,13 +55,18 @@ const router = createBrowserRouter([
       },
     ],
   },
-
-  // ✅ Auth routes
-  { path: "/login", element: <Login /> },
-  { path: "/signup", element: <Signup /> },
-
-  // ✅ Fallback
-  { path: "*", element: <Navigate to="/" replace /> },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "*",
+    element: <Navigate to="/" replace />,
+  },
 ]);
 
 export default router;
